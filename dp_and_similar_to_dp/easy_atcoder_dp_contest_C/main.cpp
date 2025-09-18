@@ -2,17 +2,17 @@
 
 using namespace std;
 const int MaxN = 1e5 + 5;
-int arr[MaxN][3];
-int dp[MaxN][3];
 int main() {
     int n;
     cin >> n;
-    memset(dp, 0, sizeof(dp));
+    int p0 = 0, p1 = 0, p2 = 0, dp0, dp1, dp2;
     for(int i = 1; i <= n; i++) {
-        cin >> arr[i][0] >> arr[i][1] >> arr[i][2];
-        dp[i][0] = max(dp[i-1][1], dp[i-1][2]) + arr[i][0];
-        dp[i][1] = max(dp[i-1][0], dp[i-1][2]) + arr[i][1];
-        dp[i][2] = max(dp[i-1][0], dp[i-1][1]) + arr[i][2];
+        int n1, n2, n3;
+        cin >> n1 >> n2 >> n3;
+        dp0 = max(p1, p2) + n1;
+        dp1 = max(p0, p2) + n2;
+        dp2 = max(p0, p1) + n3;
+        p0 = dp0, p1 = dp1, p2 = dp2;
     }
-    cout << max(max(dp[n][0], dp[n][1]), dp[n][2]);
+    cout << max(max(dp0, dp1), dp2);
 }   
